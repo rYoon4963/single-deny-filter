@@ -41,3 +41,10 @@ enough not to collide with unrelated loggers. `"urllib3"` is fine;
 
 Empty and non-string names raise `ValueError` and `TypeError` respectively
 at construction.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
